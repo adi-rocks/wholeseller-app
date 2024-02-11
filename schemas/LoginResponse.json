@@ -1,0 +1,118 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "ActiveStatus": {
+            "enum": [
+                "Y",
+                "N"
+            ],
+            "type": "string"
+        },
+        "LoginData": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "user": {
+                    "$ref": "#/definitions/User"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "user",
+                "username"
+            ],
+            "type": "object"
+        },
+        "Role": {
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "$ref": "#/definitions/UserRole"
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "type": "object"
+        },
+        "User": {
+            "properties": {
+                "active": {
+                    "$ref": "#/definitions/ActiveStatus"
+                },
+                "address": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "role": {
+                    "$ref": "#/definitions/Role"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "active",
+                "address",
+                "email",
+                "id",
+                "role",
+                "username"
+            ],
+            "type": "object"
+        },
+        "UserRole": {
+            "enum": [
+                "SUPER_ADMIN",
+                "ADMIN",
+                "USER"
+            ],
+            "type": "string"
+        }
+    },
+    "properties": {
+        "data": {
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/LoginData"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "message": {
+            "type": "string"
+        },
+        "sessionToken": {
+            "type": "string"
+        },
+        "status": {
+            "type": "number"
+        },
+        "success": {
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "data",
+        "message",
+        "sessionToken",
+        "status",
+        "success"
+    ],
+    "type": "object"
+}
+

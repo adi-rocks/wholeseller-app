@@ -1,10 +1,10 @@
-import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, ObjectIdColumn } from 'typeorm'
 import { User } from './User'
 
 @Entity()
 export class UserLogin extends BaseEntity {
-  @PrimaryGeneratedColumn()
-    id!: number
+  @ObjectIdColumn()
+    id!: string
 
   @Column()
     username!: string
@@ -18,7 +18,6 @@ export class UserLogin extends BaseEntity {
   @Column()
     sessionToken!: string
 
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'userId' })
+  @Column()
     user!: User
 }

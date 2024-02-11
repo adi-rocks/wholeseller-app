@@ -1,4 +1,4 @@
-import { Column, Entity, ObjectIdColumn } from 'typeorm'
+import { BaseEntity, Column, Entity, ObjectIdColumn } from 'typeorm'
 
 export enum UserRole {
   SuperAdmin = 'SUPER_ADMIN',
@@ -7,7 +7,7 @@ export enum UserRole {
 }
 
 @Entity('roles')
-export class Role {
+export class Role extends BaseEntity {
   @ObjectIdColumn()
     id!: string
 

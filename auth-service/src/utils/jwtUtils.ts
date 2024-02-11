@@ -6,7 +6,7 @@ const verifyToken = (token: string): JwtPayload => {
   return decoded
 }
 
-const generateSessionToken = (userId: string): string => {
+const generateSessionToken = (userId: any): string => {
   const token = jwt.sign({ userId }, secretKey, { expiresIn: '10m' })
   return token
 }

@@ -1,10 +1,10 @@
 import { type NextFunction, type Request, type Response } from 'express'
 import * as httpContext from 'express-http-context'
-import { User } from '../../../models/src/User'
-import { UserLogin } from '../../../models/src/UserLogin'
-import { getRepository } from '../../../models/utils/dbUtils'
-import { sendUnauthorizedResponse } from '../utils/exceptionUtils'
+import { User } from '../../../models/src/entities/User'
+import { UserLogin } from '../../../models/src/entities/UserLogin'
+import { getRepository } from '../../../models/src/utils/dbUtils'
 import { verifyToken } from '../utils/jwtUtils'
+import { sendResponse } from '../utils/appUtils'
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   const token = req.cookies.sessionToken as string
@@ -40,5 +40,9 @@ export const checkAccess = (token: string, res: Response, next: NextFunction, ro
 
 export const send401 = (res: Response): void => {
   res.clearCookie('sessionToken')
-  sendUnauthorizedResponse(res, 'Unauthorized Access')
+  sendResponse(res, 401, false, 'Unauthorized Access', null)
+}
+
+export const getUserLogin = (): UserLogin => {
+  return httpContext.get('userLogin')
 }

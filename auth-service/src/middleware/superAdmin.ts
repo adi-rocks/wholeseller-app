@@ -1,5 +1,5 @@
 import { type NextFunction, type Request, type Response } from 'express'
-import { UserRole } from '../../../models/src/Role'
+import { UserRole } from '../../../models/src/entities/Role'
 import { checkAccess, send401 } from './auth'
 
 export const superAdminAccess = (req: Request, res: Response, next: NextFunction): void => {
