@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "prestart": "npm i ./auth-service && npm i ./models && npm run schema:generate",
+    "prestart": "npm i ./auth-service && npm i ./models && npm i ./user-service && npm run schema:generate",
     "schema:generate": "tsc generate-schemas.ts && node generate-schemas.js",
-    "start": "concurrently \"npm run start --prefix ./auth-service\"",
+    "start": "concurrently \"npm run start --prefix ./auth-service\" \"npm run start --prefix ./user-service\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -17,7 +17,8 @@
     "path-scurry": "^1.10.1",
     "wholeseller": "file:auth-service",
     "wholeseller-authentication-service": "file:auth-service",
-    "wholeseller-models": "file:models"
+    "wholeseller-models": "file:models",
+    "wholeseller-user-service": "file:user-service"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
